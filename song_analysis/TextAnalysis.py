@@ -28,6 +28,7 @@ def createCorpus():
 
 def tf-idf():
     idf = {}
+    songCount = {}
     for song in corpus:
         count = {}
         currLyrics = song.lyrics.split(" ")
@@ -42,6 +43,9 @@ def tf-idf():
                 count[word] = curr[word] + 1
             else:
                 count[word] = 1
-
+        songCount[song.id] = count
+    for sc in songCount:
+        for curr in sc:
+            
 createCorpus()
 textFrequency()
