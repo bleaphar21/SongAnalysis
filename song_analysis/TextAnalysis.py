@@ -3,7 +3,7 @@ import csv
 import math
 import re
 
-with open('songdata.csv') as song:
+with open('small_songdata.csv') as song:
     songs = list(csv.reader(song))
 
 @dataclass(frozen=True)
