@@ -8,9 +8,11 @@ with open('songdata.csv') as song:
 
 @dataclass(frozen=True)
 class Song:
-    artist: str
-    title: str
     id: int
+    title: str
+    year: int
+    artist: str
+    genre: str
 
 corpus = []
 lyrics = {}
@@ -29,10 +31,11 @@ def clean_lyrics(lyrics: str) -> list:
 def create_corpus():
     iden = 0
     for s in songs:
-        new_song = Song(s[0], s[1], iden)
-        lyrics[iden] = clean_lyrics(s[3])
-        corpus.append(new_song)
-        iden += 1
+        if s[4] != "Not Available":
+            new_song = Song(iden, s[1], s[2], s[3], s[4])
+            lyrics[iden] = clean_lyrics(s[5])
+            corpus.append(new_song)
+            iden += 1
 
 def compute_idf():
     df = {}
